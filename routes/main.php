@@ -7,9 +7,6 @@ use core\app;
 // ([0-9]+)
 
 /*home*/
-app::get('/', '/home/index', 'main');
-app::get('/home/page/([0-9]+)', '/home/index', 'main');
-
 /*auth*/
 app::get('/auth', '/auth/AuthPage', 'main', ['Authless']);
 app::post('/signup', '/auth/SignUp', 'main', ['Authless']);

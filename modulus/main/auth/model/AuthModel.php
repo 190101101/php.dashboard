@@ -132,7 +132,7 @@ class AuthModel extends model
         #unset variables
         unset($http1); unset($data); unset($_POST); unset($v); unset($user); unset($form);
 
-        $this->return->code(200)->return('login', User::user_login())->get()->http();
+        $this->return->code(200)->return('login', User::user_login())->get()->http('panel/admin');
     }
 
     public function signOut()
@@ -144,7 +144,7 @@ class AuthModel extends model
 
         User::has() 
             ? $this->return->code(404)->return('error')->get()->referer() 
-            : $this->return->code(200)->return('logout', $login)->get()->http();
+            : $this->return->code(200)->return('logout', $login)->get()->http('auth');
     }
 
 }
