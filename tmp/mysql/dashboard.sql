@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Янв 03 2023 г., 05:36
+-- Время создания: Янв 03 2023 г., 05:38
 -- Версия сервера: 10.4.27-MariaDB
 -- Версия PHP: 8.1.12
 
@@ -1080,7 +1080,7 @@ CREATE TABLE `guest` (
 --
 
 INSERT INTO `guest` (`guest_id`, `guest_ip`, `guest_visit`, `guest_created`) VALUES
-(1, '127.0.0.1', 1672720762, '2023-01-03 03:27:14');
+(1, '127.0.0.1', 1672724265, '2023-01-03 03:27:14');
 
 -- --------------------------------------------------------
 
@@ -1130,6 +1130,33 @@ INSERT INTO `setting` (`setting_id`, `setting_description`, `setting_key`, `sett
 (28, 'faq page status', 'faq_page_status', '1', 'text', '2022-12-15 20:07:24'),
 (29, 'contact page status', 'contact_page_status', '1', 'text', '2022-12-20 23:49:48');
 
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `user`
+--
+
+CREATE TABLE `user` (
+  `user_id` int(11) NOT NULL,
+  `user_email` varchar(100) NOT NULL,
+  `user_login` varchar(50) NOT NULL,
+  `user_password` varchar(50) NOT NULL,
+  `user_status` int(11) NOT NULL DEFAULT 1,
+  `user_level` int(11) NOT NULL DEFAULT 1,
+  `user_gender` varchar(50) NOT NULL,
+  `user_ip` varchar(100) NOT NULL,
+  `last_updated` timestamp NOT NULL DEFAULT current_timestamp(),
+  `user_updated` timestamp NOT NULL DEFAULT current_timestamp(),
+  `user_created` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Дамп данных таблицы `user`
+--
+
+INSERT INTO `user` (`user_id`, `user_email`, `user_login`, `user_password`, `user_status`, `user_level`, `user_gender`, `user_ip`, `last_updated`, `user_updated`, `user_created`) VALUES
+(1, 'apsi@mail.ru', 'apsi', '111', 1, 99, 'male', '127.0.0.1', '2022-12-20 22:11:37', '2023-01-03 04:15:20', '2022-12-20 22:11:37');
+
 --
 -- Индексы сохранённых таблиц
 --
@@ -1160,6 +1187,14 @@ ALTER TABLE `setting`
   ADD KEY `setting_key` (`setting_key`);
 
 --
+-- Индексы таблицы `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`user_id`),
+  ADD KEY `user_email` (`user_email`),
+  ADD KEY `user_password` (`user_password`);
+
+--
 -- AUTO_INCREMENT для сохранённых таблиц
 --
 
@@ -1180,6 +1215,12 @@ ALTER TABLE `guest`
 --
 ALTER TABLE `setting`
   MODIFY `setting_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+
+--
+-- AUTO_INCREMENT для таблицы `user`
+--
+ALTER TABLE `user`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
